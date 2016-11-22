@@ -1,0 +1,20 @@
+
+<link rel="stylesheet" href="css/main.css">
+
+<script type="text/javascript">
+
+    var dashboard, components;
+
+    require(['cdf/Dashboard.Bootstrap', 'cdf/components/QueryComponent'],
+        function(Dashboard, QueryComponent) {
+
+            dashboard = Dashboard;
+            components = {
+                'QueryComponent': QueryComponent
+            }
+
+            document.body.innerHTML += '<div id="app"></div>';
+    });
+</script>
+
+<script src="js/main.js"></script>
