@@ -5,42 +5,42 @@ const argv = require('yargs').argv;
 /* START: change these paths */
 
 // bi-server import-export file path
-const biServerCommandPath = '../repositories/biserver-ce/import-export.sh';
+const biServerCommandPath = '../../repositories/biserver-ce/import-export.sh';
 
 // Dev (default) environment
-let petahoURL           = 'http://localhost:8080/pentaho',
-pentahoUsername     = 'Admin',
-pentahoPassword     = 'password';
+let pentahoURL          = 'http://localhost:8080/pentaho',
+    pentahoUsername     = 'Admin',
+    pentahoPassword     = 'password';
 
 // Set homologation environment and run with -e flag (ex.: gulp -e hom)
 if(argv.e === 'hom') {
-    petahoURL           = '',
+    pentahoURL          = '',
     pentahoUsername     = '',
     pentahoPassword     = '';
 }
 // Set production environment and run with -e flag (ex.: gulp -e prod)
 else if(argv.e === 'prod') {
-    petahoURL           = '',
+    pentahoURL          = '',
     pentahoUsername     = '',
     pentahoPassword     = '';
 }
 
-// Pentaho project path. This will generate the root folder of your
-// project in pentaho bi-server
-const projectPath      = 'build',
-// Pentaho source path. This path will be used to generate a development
-// folder in pentaho bi-server
-pentahoPath      = '/' + projectPath,
-// Pentaho dist path. This path will be used to generate a dist (production)
-// folder in pentaho bi-server
-pentahoDistPath = '/',
-// User file path. NOTE: this path should be relative to your bi-server
-zipfilePath      = '../pentaho-cdf-angular-boilerplate/zip/';
+        // Pentaho project path. This will generate the root folder of your
+        // project in pentaho bi-server
+const   projectPath      = 'MyReactDashboard',
+        // Pentaho source path. This path will be used to generate a development
+        // folder in pentaho bi-server
+        pentahoPath      = '/',
+        // Pentaho dist path. This path will be used to generate a dist (production)
+        // folder in pentaho bi-server
+        pentahoDistPath  = '/',
+        // User file path. NOTE: this path should be relative to your bi-server
+        zipfilePath      = '../../seed/pentaho-cdf-react-boilerplate/zip/';
 
 const config = {
 
     biServerCommandPath: biServerCommandPath,
-    petahoURL: petahoURL,
+    pentahoURL: pentahoURL,
     pentahoUsername: pentahoUsername,
     pentahoPassword: pentahoPassword,
     projectPath: projectPath,
@@ -55,25 +55,25 @@ const config = {
 
     scripts: {
         src: './app/js/**/*.js',
-        dest: './' + projectPath + '/js/',
-        ignore: '!./' + projectPath + '/bower_components/**/*.js',
+        dest: `./${projectPath}/js/`,
+        ignore: `!./${projectPath}/bower_components/**/*.js`,
         test: './tests/**/*.js',
         gulp: './gulp/**/*.js'
     },
 
     images: {
         src: './app/images/**/*.{jpeg,jpg,png,gif}',
-        dest: './' + projectPath + '/images/'
+        dest: `./${projectPath}/images/`
     },
 
     styles: {
         src: './app/styles/**/*.scss',
-        dest: './' + projectPath + '/css/'
+        dest: `./${projectPath}/css/`
     },
 
     sourceDir: './app/',
 
-    buildDir: './' + projectPath + '/',
+    buildDir: `./${projectPath}/`,
 
     testFiles: './tests/**/*.{js,jsx}',
 

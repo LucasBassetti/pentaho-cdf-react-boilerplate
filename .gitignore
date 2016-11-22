@@ -26,6 +26,7 @@ build
 
 # Build files
 build
+MyReactDashboard
 __coverage__
 
 .elasticbeanstalk/

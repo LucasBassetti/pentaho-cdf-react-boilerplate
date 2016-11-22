@@ -1,6 +1,8 @@
 'use strict';
 
-const _cdasPath = '/Retail/cdas',
+const config = require('../../../gulp/config');
+
+const _cdasPath = `/${config.default.projectPath}/cdas`,
       _classes = {},
       _components = {};
 
