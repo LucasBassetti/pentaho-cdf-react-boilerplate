@@ -24,5 +24,6 @@ gulp.task('copyIndex', function() {
 
   gulp.src(config.sourceDir + '*.html').pipe(gulp.dest(config.buildDir));
   gulp.src(config.sourceDir + '*.xcdf').pipe(gulp.dest(config.buildDir));
+  gulp.src(config.sourceDir + '*.locale').pipe(gulp.dest(config.buildDir));
 
 });

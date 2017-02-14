@@ -2,7 +2,7 @@
 <cdf>
   <title></title>
   <author></author>
-  <description>index</description>
+  <description>My Dashboard</description>
   <icon></icon>
   <template>index.html</template>
   <style>clean</style>

@@ -46,7 +46,23 @@ function buildScript(f, watch) {
     bundler.transform(debowerify);
 
     function rebundle() {
-        gulp.start('import:js:rebundle');
+        if(global.isBuild) {
+            const stream = bundler.bundle();
+
+            gutil.log('Rebundle...');
+
+            return stream.on('error', handleErrors)
+            .pipe(source(file))
+            .pipe(gulpif(global.isProd, streamify(uglify())))
+            .pipe(streamify(rename({
+                basename: 'main'
+            })))
+            .pipe(gulpif(!global.isProd, sourcemaps.write('./')))
+            .pipe(gulp.dest(config.scripts.dest));
+        }
+        else {
+            gulp.start('import:js:rebundle');
+        }
     }
 
     return rebundle();

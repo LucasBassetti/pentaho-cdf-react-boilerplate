@@ -1,11 +1,18 @@
-
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="my_dashboard/css/main.css">
 
 <script type="text/javascript">
 
+    document.title = 'My Dashboard';
+
+    var meta = document.createElement('meta');
+    meta.name = 'viewport';
+    meta.content = 'width=device-width';
+    document.getElementsByTagName('head')[0].appendChild(meta);
+
+
     var dashboard, components;
 
-    require(['cdf/Dashboard.Bootstrap', 'cdf/components/QueryComponent'],
+    require(['cdf/Dashboard.Clean', 'cdf/components/QueryComponent'],
         function(Dashboard, QueryComponent) {
 
             dashboard = Dashboard;
@@ -17,4 +24,4 @@
     });
 </script>
 
-<script src="js/main.js"></script>
+<script src="my_dashboard/js/main.js"></script>

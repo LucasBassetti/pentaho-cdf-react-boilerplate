@@ -1,8 +1,7 @@
-@import 'vars';
-@import 'typography';
+@import 'settings';
+@import 'tools';
+@import 'generic';
 @import 'base';
-
-@import 'elements/header';
-@import 'elements/footer';
-
-@import '../../node_modules/grommet/scss/grommet-core/index.scss';
+@import 'objects';
+@import 'components';
+@import 'trumps';

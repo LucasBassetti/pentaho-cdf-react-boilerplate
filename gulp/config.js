@@ -1,74 +1,63 @@
 'use strict';
 
-const argv = require('yargs').argv;
-
 /* START: change these paths */
 
 // bi-server import-export file path
-const biServerCommandPath = '../../repositories/biserver-ce/import-export.sh';
+const biServerCommandPath = '../biserver-ce/import-export.sh';
 
 // Dev (default) environment
-let pentahoURL          = 'http://localhost:8080/pentaho',
+const pentahoURL        = 'http://localhost:8080/pentaho',
     pentahoUsername     = 'Admin',
     pentahoPassword     = 'password';
 
-// Set homologation environment and run with -e flag (ex.: gulp -e hom)
-if(argv.e === 'hom') {
-    pentahoURL          = '',
-    pentahoUsername     = '',
-    pentahoPassword     = '';
-}
-// Set production environment and run with -e flag (ex.: gulp -e prod)
-else if(argv.e === 'prod') {
-    pentahoURL          = '',
-    pentahoUsername     = '',
-    pentahoPassword     = '';
-}
-
         // Pentaho project path. This will generate the root folder of your
         // project in pentaho bi-server
-const   projectPath      = 'MyReactDashboard',
+const   projectPath      = 'MyDashboard',
         // Pentaho source path. This path will be used to generate a development
         // folder in pentaho bi-server
         pentahoPath      = '/',
         // Pentaho dist path. This path will be used to generate a dist (production)
         // folder in pentaho bi-server
         pentahoDistPath  = '/',
+        // Pentaho source subpath. This subpath will be used as subpath of css and js
+        // files in bi-server. Note: You should change the index.html to adapt to this
+        // new path
+        pentahoSubPath   = '/my_dashboard/',
         // User file path. NOTE: this path should be relative to your bi-server
-        zipfilePath      = '../../seed/pentaho-cdf-react-boilerplate/zip/';
+        zipfilePath      = '../pentaho-cdf-react-boilerplate/zip/';
 
 const config = {
 
-    biServerCommandPath: biServerCommandPath,
-    pentahoURL: pentahoURL,
-    pentahoUsername: pentahoUsername,
-    pentahoPassword: pentahoPassword,
-    projectPath: projectPath,
-    pentahoPath: pentahoPath,
-    pentahoDistPath: pentahoDistPath,
-    zipfilePath: zipfilePath,
-
-    bower: {
-        scripts: './app/bower_components/**/*.js',
-        styles: './app/bower_components/**/*.css',
-    },
+    biServerCommandPath,
+    pentahoURL,
+    pentahoUsername,
+    pentahoPassword,
+    projectPath,
+    pentahoPath,
+    pentahoSubPath,
+    pentahoDistPath,
+    zipfilePath,
 
     scripts: {
         src: './app/js/**/*.js',
-        dest: `./${projectPath}/js/`,
-        ignore: `!./${projectPath}/bower_components/**/*.js`,
+        dest: `./${projectPath}${pentahoSubPath}js/`,
         test: './tests/**/*.js',
         gulp: './gulp/**/*.js'
     },
 
     images: {
         src: './app/images/**/*.{jpeg,jpg,png,gif}',
-        dest: `./${projectPath}/images/`
+        dest: `./${projectPath}${pentahoSubPath}images/`
+    },
+
+    cdas: {
+        src: './app/**/*.cda',
+        dest: `./${projectPath}/cdas/`
     },
 
     styles: {
         src: './app/styles/**/*.scss',
-        dest: `./${projectPath}/css/`
+        dest: `./${projectPath}${pentahoSubPath}css/`
     },
 
     sourceDir: './app/',
@@ -90,12 +79,7 @@ const config = {
         'ttc',
         'ttf',
         'woff2?'
-    ],
-
-    wiredep: {
-        exclude: [],
-        directory: 'app/bower_components'
-    }
+    ]
 
 };
 

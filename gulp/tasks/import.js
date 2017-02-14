@@ -9,9 +9,10 @@ const biServerCommandPath = config.default.biServerCommandPath,
       pentahoPassword     = config.default.pentahoPassword,
 
       pentahoImport  = `${biServerCommandPath} --import --url=${petahoURL} --username=${pentahoUsername} --password=${pentahoPassword} --overwrite=true --permission=true --retainOwnership=true`,
-      projectPath      = config.default.projectPath,   // user source path
-      pentahoPath      = config.default.pentahoPath,   // pentaho path
-      zipfilePath      = config.default.zipfilePath,   // user file path
+      projectPath      = config.default.projectPath,    // user source path
+      pentahoPath      = config.default.pentahoPath,    // pentaho path
+      pentahoSubPath   = config.default.pentahoSubPath, // pentaho sub path
+      zipfilePath      = config.default.zipfilePath,    // user file path
 
       // zip file paths
       zipPath = {
@@ -25,16 +26,9 @@ const biServerCommandPath = config.default.biServerCommandPath,
 /* SOURCE TASKS
 =================================== */
 
-gulp.task('zip:bower', function() {
-    return gulp.src('./app/bower_components/**', {
-            base: './app'
-        })
-        .pipe(gulpZip('bower.zip'))
-        .pipe(gulp.dest('./zip'));
+gulp.task('import:cdas', function() {
+    gulp.start('import-cdas');
 });
-gulp.task('import:bower', ['zip:bower'], shell.task([
-    `${pentahoImport} --path=${pentahoPath}${projectPath} --file-path=${zipPath.bower}`
-]));
 
 gulp.task('zip:cdas', function() {
     return gulp.src('./app/cdas/**', {
@@ -43,12 +37,12 @@ gulp.task('zip:cdas', function() {
         .pipe(gulpZip('cdas.zip'))
         .pipe(gulp.dest('./zip'));
 });
-gulp.task('import:cdas', ['zip:cdas'], shell.task([
+gulp.task('import-cdas', ['zip:cdas'], shell.task([
     `${pentahoImport} --path=${pentahoPath}${projectPath} --file-path=${zipPath.cdas}`
 ]));
 
 gulp.task('zip:js', function() {
-    return gulp.src(`./${projectPath}/js/**`, {
+    return gulp.src(`./${projectPath}${pentahoSubPath}/js/**`, {
             base: './'
         })
         .pipe(gulpZip('js.zip'))
@@ -59,7 +53,7 @@ gulp.task('import-js', ['zip:js'], shell.task([
 ]));
 
 gulp.task('zip:css', function() {
-    return gulp.src(`./${projectPath}/css/**`, {
+    return gulp.src(`./${projectPath}${pentahoSubPath}/css/**`, {
             base: './'
         })
         .pipe(gulpZip('css.zip'))
@@ -70,7 +64,7 @@ gulp.task('import-css', ['zip:css'], shell.task([
 ]));
 
 gulp.task('zip:html', function() {
-    return gulp.src([`./${projectPath}/**`, `!./${projectPath}{/css,/css/**,/js,/js/**}`], {
+    return gulp.src([`./${projectPath}/**`, `!./${projectPath}{${pentahoSubPath},${pentahoSubPath}**}`], {
             base: './'
         })
         .pipe(gulpZip('html.zip'))
@@ -79,3 +73,13 @@ gulp.task('zip:html', function() {
 gulp.task('import-html', ['zip:html'], shell.task([
     `${pentahoImport} --path=${pentahoPath} --file-path=${zipPath.html}`
 ]));
+
+// BUILD
+
+gulp.task('zip:project', function() {
+    return gulp.src(`./${projectPath}/**`, {
+            base: './'
+        })
+        .pipe(gulpZip(`${projectPath}.zip`))
+        .pipe(gulp.dest('./'));
+});

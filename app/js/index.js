@@ -10,4 +10,15 @@ if ( process.env.NODE_ENV !== 'production' ) {
   window.React = React;
 }
 
-ReactDOM.render(Routes, document.getElementById('app'));
+render();
+
+function render() {
+    if(document.getElementById('app') !== null) {
+        ReactDOM.render(Routes, document.getElementById('app'));
+    }
+    else {
+        setTimeout(function() {
+            render();
+        }, 1000);
+    }
+}
