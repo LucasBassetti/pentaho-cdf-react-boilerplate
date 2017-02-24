@@ -16,6 +16,10 @@ Boilerplate to Pentaho [BIServer](https://sourceforge.net/projects/pentaho/files
 1. Run `npm install`
 2. Run `gulp dev` to development and `gulp prod` to production
 
+### Configuration
+
+1. You can edit the configurations in `gulp/config.js` file
+
 ``` javascript
 // bi-server import-export file path
 const biServerCommandPath = '../biserver-ce/import-export.sh';
@@ -41,10 +45,6 @@ const pentahoSubPath   = '/my_dashboard/';
 // User file path. NOTE: this path should be relative to your bi-server
 const zipfilePath      = '../pentaho-cdf-react-boilerplate/zip/';
 ```
-
-### Configuration
-
-1. You can edit the configurations in `gulp/config.js` file
 
 ### Known issues
 
