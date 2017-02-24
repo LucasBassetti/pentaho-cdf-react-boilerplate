@@ -6,25 +6,27 @@
 const biServerCommandPath = '../biserver-ce/import-export.sh';
 
 // Dev (default) environment
-const pentahoURL        = 'http://localhost:8080/pentaho',
-    pentahoUsername     = 'Admin',
-    pentahoPassword     = 'password';
+const pentahoURL = 'http://localhost:8080/pentaho';
+const pentahoUsername = 'Admin';
+const pentahoPassword = 'password';
 
-        // Pentaho project path. This will generate the root folder of your
-        // project in pentaho bi-server
-const   projectPath      = 'MyDashboard',
-        // Pentaho source path. This path will be used to generate a development
-        // folder in pentaho bi-server
-        pentahoPath      = '/',
-        // Pentaho dist path. This path will be used to generate a dist (production)
-        // folder in pentaho bi-server
-        pentahoDistPath  = '/',
-        // Pentaho source subpath. This subpath will be used as subpath of css and js
-        // files in bi-server. Note: You should change the index.html to adapt to this
-        // new path
-        pentahoSubPath   = '/my_dashboard/',
-        // User file path. NOTE: this path should be relative to your bi-server
-        zipfilePath      = '../pentaho-cdf-react-boilerplate/zip/';
+// Pentaho project path. This will generate the root folder of your
+// project in pentaho bi-server
+const projectPath      = 'MyDashboard';
+// Pentaho source path. This path will be used to generate a development
+// folder in pentaho bi-server
+const pentahoPath      = '/';
+// Pentaho dist path. This path will be used to generate a dist (production)
+// folder in pentaho bi-server
+const pentahoDistPath  = '/';
+// Pentaho source subpath. This subpath will be used as subpath of css and js
+// files in bi-server. Note: You should change the index.html to adapt to this
+// new path
+const pentahoSubPath   = '/my_dashboard/';
+// User file path. NOTE: this path should be relative to your bi-server
+const zipfilePath      = '../pentaho-cdf-react-boilerplate/zip/';
+
+/* END: change these paths */
 
 const config = {
 
