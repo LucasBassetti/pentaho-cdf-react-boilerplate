@@ -12,6 +12,10 @@
     "es6": true,
     "node": true,
   },
+  "globals": {
+    "dashboard": true,
+    "components": true,
+  },
   "rules": {
     "quotes": [2, "single"],
     "eol-last": 2,
