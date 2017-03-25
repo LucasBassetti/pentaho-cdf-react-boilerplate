@@ -7,32 +7,31 @@ import ExampleList from '../components/ExampleList';
 
 class Main extends Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { exampleList } = this.props;
+
+    if(!exampleList || exampleList.length === 0) {
+      return <div className="main"></div>;
     }
 
-    render() {
-
-        const { exampleList } = this.props;
-
-        if(!exampleList || exampleList.length === 0) {
-            return <div className="main"></div>;
-        }
-
-        return (
-            <div className="main">
-                <ExampleList list={exampleList} />
-            </div>
-        );
-    }
+    return (
+      <div className="main">
+        <ExampleList list={exampleList} />
+      </div>
+    );
+  }
 }
 
 Main.propTypes = {
-    exampleList: PropTypes.array
+  exampleList: PropTypes.array
 };
 
 function mapStateToProps({ exampleList }) {
-    return { exampleList };
+  return { exampleList };
 }
 
 export default connect(mapStateToProps)(Main);

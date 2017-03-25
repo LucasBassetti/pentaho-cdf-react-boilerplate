@@ -2,26 +2,29 @@
 
 <script type="text/javascript">
 
-    document.title = 'My Dashboard';
+  document.title = 'My Dashboard';
 
-    var meta = document.createElement('meta');
-    meta.name = 'viewport';
-    meta.content = 'width=device-width';
-    document.getElementsByTagName('head')[0].appendChild(meta);
+  var meta = document.createElement('meta');
 
+  meta.name = 'viewport';
+  meta.content = 'width=device-width';
 
-    var dashboard, components;
+  document.getElementsByTagName('head')[0].appendChild(meta);
 
-    require(['cdf/Dashboard.Clean', 'cdf/components/QueryComponent'],
-        function(Dashboard, QueryComponent) {
+  var dashboard, components;
 
-            dashboard = Dashboard;
-            components = {
-                'QueryComponent': QueryComponent
-            }
+  require([
+    'cdf/Dashboard.Clean',
+    'cdf/components/QueryComponent'
+  ], function(Dashboard, QueryComponent) {
 
-            document.body.innerHTML += '<div id="app"></div>';
-    });
+    dashboard = Dashboard;
+    components = {
+      'QueryComponent': QueryComponent
+    }
+    
+    document.body.innerHTML += '<div id="app"></div>';
+  });
 </script>
 
 <script src="my_dashboard/js/main.js"></script>
