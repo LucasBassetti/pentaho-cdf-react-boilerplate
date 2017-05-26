@@ -13,12 +13,12 @@ if ( process.env.NODE_ENV !== 'production' ) {
 render();
 
 function render() {
-    if(document.getElementById('app') !== null) {
-        ReactDOM.render(Routes, document.getElementById('app'));
-    }
-    else {
-        setTimeout(function() {
-            render();
-        }, 1000);
-    }
+  if(document.getElementById('app') !== null) {
+    ReactDOM.render(Routes, document.getElementById('app'));
+  }
+  else {
+    setTimeout(function() {
+      render();
+    }, 1000);
+  }
 }

@@ -16,21 +16,21 @@ import Container from './components/Container';
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+    
+    Dashboard.setDashboard(new dashboard());
+    Components.setComponentsClasses(components);
+  }
 
-        Dashboard.setDashboard(new dashboard());
-        Components.setComponentsClasses(components);
-    }
+  render() {
 
-    render() {
-
-        return (
-            <Provider store={createStoreWithMiddleware(reducers)}>
-              <Container />
-            </Provider>
-        );
-    }
+    return (
+      <Provider store={createStoreWithMiddleware(reducers)}>
+        <Container />
+      </Provider>
+    );
+  }
 }
 
 export default App;
